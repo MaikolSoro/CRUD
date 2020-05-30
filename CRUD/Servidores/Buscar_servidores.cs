@@ -47,6 +47,9 @@ namespace CRUD.Servidores
             }
         }
 
+        /// <summary>
+        /// Compruebo la conexion que no tenga usuario y no este guardada  en sql
+        /// </summary>
         public void comprobar_conexion_sin_usuario_y_si_aun_no_se_guarda_la_conexion()
         {
             string servidorsql = @".\SQLEXPRESS";
@@ -78,9 +81,83 @@ namespace CRUD.Servidores
                 {
 
                 }
+            } else
+            {
+                servidorsql = ".";
+                baseDeDatos(servidorsql);
+
+                try
+                {
+                    ComboBox1.DataSource = dt;
+                    ComboBox1.DisplayMember = "name";
+                }
+                catch(Exception ex)
+                {
+
+                }
+
+                if(!string.IsNullOrEmpty(ComboBox1.Text))
+                {
+                    try
+                    {
+                        saveInstancia(aes.Encrypt(servidorsql, Desencryptacion.appPwdUnique, int.Parse("256")));
+                        saveusuario(aes.Encrypt("NULO", Desencryptacion.appPwdUnique, int.Parse("256")));
+                        savecontraseña(aes.Encrypt("NULO", Desencryptacion.appPwdUnique, int.Parse("256")));
+                        Dispose(); // se destruye
+                        Generador_UI fm = new Generador_UI();
+                        fm.ShowDialog();
+                    }
+                    catch(Exception ex)
+                    {
+
+                    }
+                } else
+                {
+                    panelBuscandoServidor.Visible = false;
+                    PanelSinServidor.Visible = true;
+                }
             }
 
         }
+
+        /// <summary>
+        /// Comprobar la conexion sin usuario, cuando ya está guardada la conexión
+        /// </summary>
+        public  void comprobar_conexion_sin_usuario()
+        {
+            baseDeDatos(servidor);
+            try
+            {
+                ComboBox1.DataSource = dt;
+                ComboBox1.DisplayMember = "name";
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+            if(!string.IsNullOrEmpty(ComboBox1.Text))
+            {
+                try
+                {
+                    saveInstancia(aes.Encrypt(servidor, Desencryptacion.appPwdUnique, int.Parse("256")));
+                    saveusuario(aes.Encrypt("NULO", Desencryptacion.appPwdUnique, int.Parse("256")));
+                    savecontraseña(aes.Encrypt("NULO", Desencryptacion.appPwdUnique, int.Parse("256")));
+                    Dispose(); // se destruye
+                    Generador_UI fm = new Generador_UI();
+                    fm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
+
+
+
+
 
         /// <summary>
         /// Guardar las instancias
