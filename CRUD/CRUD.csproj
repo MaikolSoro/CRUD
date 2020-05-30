@@ -50,6 +50,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Librerias\Desencryptacion.cs" />
+    <Compile Include="Librerias\Encryptacion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servidores\Buscar_servidores.cs">

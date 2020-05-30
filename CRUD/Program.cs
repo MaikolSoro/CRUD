@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using CRUD.Servidores;
 
 namespace CRUD
 {
@@ -16,7 +15,7 @@ namespace CRUD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Buscar_servidores());
+            Application.Run(new Servidores.Buscar_servidores());
         }
     }
 }

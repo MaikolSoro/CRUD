@@ -336,6 +336,7 @@ namespace CRUD.Servidores
             this.Name = "Buscar_servidores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Buscar_servidores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.PanelSinServidor.ResumeLayout(false);
             this.PanelSinServidor.PerformLayout();

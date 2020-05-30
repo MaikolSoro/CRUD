@@ -15,5 +15,12 @@ namespace CRUD.Servidores
         {
             InitializeComponent();
         }
+
+        private void Buscar_servidores_Load(object sender, EventArgs e)
+        {
+            panelBuscandoServidor.Location = new Point((Width - panelBuscandoServidor.Width) / 2, (Height - panelBuscandoServidor.Height) / 2);
+            PanelSinServidor.Location = new Point((Width - PanelSinServidor.Width) / 2, (Height - PanelSinServidor.Height) / 2);
+
+        }
     }
 }
