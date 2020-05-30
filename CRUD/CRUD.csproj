@@ -50,6 +50,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generador\Generador_UI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generador\Generador_UI.Designer.cs">
+      <DependentUpon>Generador_UI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Librerias\Desencryptacion.cs" />
     <Compile Include="Librerias\Encryptacion.cs" />
     <Compile Include="Program.cs" />

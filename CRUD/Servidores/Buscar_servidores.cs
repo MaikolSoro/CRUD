@@ -2,15 +2,29 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
+using CRUD.Generador;
+using CRUD.Librerias;
 
 namespace CRUD.Servidores
 {
     public partial class Buscar_servidores : Form
     {
+        private AES aes = new AES();
+        private DataTable dt = new DataTable();
+        private string usuario;
+        private string[] bases;
+        private string contraseña;
+        private string servidor;
+        public string NIVEL;
+        private int contador;
+        private string dbcnString;
+
         public Buscar_servidores()
         {
             InitializeComponent();
@@ -20,6 +34,198 @@ namespace CRUD.Servidores
         {
             panelBuscandoServidor.Location = new Point((Width - panelBuscandoServidor.Width) / 2, (Height - panelBuscandoServidor.Height) / 2);
             PanelSinServidor.Location = new Point((Width - PanelSinServidor.Width) / 2, (Height - PanelSinServidor.Height) / 2);
+
+        }
+
+        public void comprobar_conexiones()
+        {
+            if(NIVEL == "")
+            {
+                comprobar_conexion_sin_usuario_y_si_aun_no_se_guarda_la_conexion();
+
+
+            }
+        }
+
+        public void comprobar_conexion_sin_usuario_y_si_aun_no_se_guarda_la_conexion()
+        {
+            string servidorsql = @".\SQLEXPRESS";
+            baseDeDatos(servidorsql);
+
+            try
+            {
+                ComboBox1.DataSource = dt;
+                ComboBox1.DisplayMember = "name";   
+
+            } catch( Exception ex)
+            {
+
+            }
+
+            if(!string.IsNullOrEmpty(ComboBox1.Text)) {
+                try
+                {
+
+                    saveInstancia(aes.Encrypt(servidor, Desencryptacion.appPwdUnique, int.Parse("256")));
+                    saveusuario(aes.Encrypt("NULO", Desencryptacion.appPwdUnique, int.Parse("256")));
+                    savecontraseña(aes.Encrypt("NULO", Desencryptacion.appPwdUnique, int.Parse("256")));
+                    Dispose(); // se destruye
+                    Generador_UI fm = new Generador_UI();
+                    fm.ShowDialog();
+
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Guardar las instancias
+        /// </summary>
+        /// <param name="dbcnString"></param>
+        public void saveInstancia(object dbcnString)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("ConnectionString.xml");
+            XmlElement root = doc.DocumentElement;
+            root.Attributes.Item(0).Value = Convert.ToString(dbcnString);
+            XmlTextWriter writer = new XmlTextWriter("ConnectionString.xml", null);
+            writer.Formatting = Formatting.Indented;
+            doc.Save(writer);
+            writer.Close();
+        }
+        /// <summary>
+        /// guardar el usuario
+        /// </summary>
+        /// <param name="dbcnString"></param>
+        public void saveusuario(object dbcnString)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("usuario.xml");
+            XmlElement root = doc.DocumentElement;
+            root.Attributes.Item(0).Value = Convert.ToString(dbcnString);
+            XmlTextWriter writer = new XmlTextWriter("usuario.xml", null);
+            writer.Formatting = Formatting.Indented;
+            doc.Save(writer);
+            writer.Close();
+        }
+        /// <summary>
+        /// guardar la contraseña
+        /// </summary>
+        /// <param name="dbcnString"></param>
+        public void savecontraseña(object dbcnString)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("contraseña.xml");
+            XmlElement root = doc.DocumentElement;
+            root.Attributes.Item(0).Value = Convert.ToString(dbcnString);
+            XmlTextWriter writer = new XmlTextWriter("contraseña.xml", null);
+            writer.Formatting = Formatting.Indented;
+            doc.Save(writer);
+            writer.Close();
+        }
+
+        private string [] baseDeDatos(string  instancia)
+        {
+            string[] basesSys = { "master", "model", "msdb", "tempdb" };
+            string conn = "Server=" + instancia + "; " + "database=master; integrated security=yes";
+
+            string sel = "SELECT name FROM sysdatabases";
+
+            try
+            {
+
+                SqlDataAdapter da = new SqlDataAdapter(sel, conn);
+                da.Fill(dt);
+                bases = new string[dt.Rows.Count];
+                int k = -1;
+
+                for(int i=0; i< dt.Rows.Count; i++)
+                {
+                    string s = dt.Rows[i]["name"].ToString();
+
+                    if(Array.IndexOf(basesSys,s) == -1)
+                    {
+                        k += 1;
+                        bases[k] = s;
+
+                    }
+
+                }
+
+                if(k == -1)
+                {
+                    return null;
+                }
+
+                Array.Resize(ref bases, k + 1);
+                return bases;
+
+
+            } catch(Exception ex)
+            {
+
+            }
+            return null;
+
+        }
+
+        /// <summary>
+        /// Desencrypto la contraseña para leer el archivo
+        /// </summary>
+        public void ReadfromXMLcontraseña()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("contraseña.xml");
+                XmlElement root = doc.DocumentElement;
+                dbcnString = root.Attributes.Item(0).Value;
+                contraseña = (aes.Decrypt(dbcnString, Desencryptacion.appPwdUnique, int.Parse("256")));
+
+            }catch(System.Security.Cryptography.CryptographicException ex)
+            {
+
+            }
+
+        }
+
+        public void ReadfromXMLinstancia()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("ConnectionString.xml");
+                XmlElement root = doc.DocumentElement;
+                dbcnString = root.Attributes.Item(0).Value;
+                servidor = (aes.Decrypt(dbcnString, Desencryptacion.appPwdUnique, int.Parse("256")));
+
+            }
+            catch (System.Security.Cryptography.CryptographicException ex)
+            {
+
+            }
+
+        }
+
+        public void ReadfromXMUsuario()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("usuario.xml");
+                XmlElement root = doc.DocumentElement;
+                dbcnString = root.Attributes.Item(0).Value;
+                usuario = (aes.Decrypt(dbcnString, Desencryptacion.appPwdUnique, int.Parse("256")));
+
+            }
+            catch (System.Security.Cryptography.CryptographicException ex)
+            {
+
+            }
 
         }
     }
