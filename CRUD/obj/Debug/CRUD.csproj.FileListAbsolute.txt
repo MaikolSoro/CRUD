@@ -1,0 +1,9 @@
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.Properties.Resources.resources
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\Crud.Servidores.Buscar_servidores.resources
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.csproj.GenerateResource.cache
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\CRUD\CRUD\bin\Debug\CRUD.exe
+C:\Users\admin\source\repos\CRUD\CRUD\bin\Debug\CRUD.pdb
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.exe
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.pdb
