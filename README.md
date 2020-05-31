@@ -1,3 +1,3 @@
 # CRUD
-Una herramienta para los programadores, 
-un creador de CRUD (Insertar, editar, eliminar y mostrar) de forma automatica
+
+A tool for programmers, a creator of CRUD (Insert, edit, delete and show) automatically
