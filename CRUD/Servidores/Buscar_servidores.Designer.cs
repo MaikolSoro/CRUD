@@ -75,7 +75,7 @@ namespace CRUD.Servidores
             // PictureBox1
             // 
             this.PictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.PictureBox1.Image = global::CRUD.Properties.Resources.enchufe;
+            this.PictureBox1.Image = global::CRUD.Properties.Resources.connec;
             this.PictureBox1.Location = new System.Drawing.Point(16, 15);
             this.PictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.PictureBox1.Name = "PictureBox1";

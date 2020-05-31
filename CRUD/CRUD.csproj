@@ -66,6 +66,12 @@
     </Compile>
     <Compile Include="Librerias\Desencryptacion.cs" />
     <Compile Include="Librerias\Encryptacion.cs" />
+    <Compile Include="Presentacion\Presentacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion.Designer.cs">
+      <DependentUpon>Presentacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servidores\Buscar_servidores.cs">
@@ -80,6 +86,9 @@
     <EmbeddedResource Include="Generador\Generador_UI.resx">
       <DependentUpon>Generador_UI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion.resx">
+      <DependentUpon>Presentacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -88,6 +97,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Servidores\Buscar_servidores.resx">
       <DependentUpon>Buscar_servidores.cs</DependentUpon>
@@ -104,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="enchufe.ico" />
+    <None Include="Resources\connec.png" />
     <None Include="Resources\regreso.png" />
     <None Include="Resources\papeles.png" />
     <None Include="Resources\papel.png" />

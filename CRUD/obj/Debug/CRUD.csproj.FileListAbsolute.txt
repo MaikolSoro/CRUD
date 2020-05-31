@@ -9,3 +9,4 @@ C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.exe
 C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.pdb
 C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.CONEXION_MANUAL.resources
 C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.Generador_UI.resources
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.Presentacion.resources
