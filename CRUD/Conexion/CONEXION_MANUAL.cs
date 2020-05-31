@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.Linq;
-using System.Xml.Linq;
 
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Xml;
-using CRUD.Librerias;
 
 namespace CRUD
 {
