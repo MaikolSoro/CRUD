@@ -37,13 +37,73 @@ namespace CRUD.Servidores
 
         }
 
+        /// <summary>
+        /// Compruebo las conexiones con el usuario
+        /// </summary>
+        public void comprobar_conexion_con_usuario()
+        {
+            basesDeDatosContrasenna(servidor);
+            try
+            {
+                ComboBox1.DataSource = dt;
+                ComboBox1.DisplayMember = "name";
+            }
+            catch(Exception ex)
+            {
+
+            }
+            if(!string.IsNullOrEmpty(ComboBox1.Text))
+            {
+                saveInstancia(aes.Encrypt(txtinstancia.Text.Trim(), Desencryptacion.appPwdUnique, int.Parse("256")));
+                saveusuario(aes.Encrypt(txtusuario.Text.Trim(), Desencryptacion.appPwdUnique, int.Parse("256")));
+                savecontraseña(aes.Encrypt(txtcontraseña.Text.Trim(), Desencryptacion.appPwdUnique, int.Parse("256")));
+                Dispose(); // se destruye la ejecución
+                Generador_UI fm = new Generador_UI();
+                fm.ShowDialog();
+
+            } else
+            {
+                panelBuscandoServidor.Visible = false;
+                PanelSinServidor.Visible = true;
+            }
+        }
+
         public void comprobar_conexiones()
         {
-            if(NIVEL == "")
+            if(string.IsNullOrEmpty(NIVEL))
             {
-                comprobar_conexion_sin_usuario_y_si_aun_no_se_guarda_la_conexion();
+                ReadfromXMLcontraseña();
+                ReadfromXMLinstancia();
+                ReadfromXMLusuario();
+                if(usuario == "NULO")
+                {
+                    comprobar_conexion_sin_usuario();
+                    if(string.IsNullOrEmpty(ComboBox1.Text))
+                    {
+                        comprobar_conexion_sin_usuario_y_si_aun_no_se_guarda_la_conexion();
+                    }
+                } else
+                {
+                    comprobar_conexion_sin_usuario_y_si_aun_no_se_guarda_la_conexion();
+                    panelBuscandoServidor.Visible = true;
+                    PanelSinServidor.Visible = false;
 
-
+                    if(string.IsNullOrEmpty(ComboBox1.Text))
+                    {
+                        txtcontraseña.Text = contraseña;
+                        txtusuario.Text = usuario;
+                        comprobar_conexion_con_usuario();
+                    }
+                }
+            }
+            else
+            {
+                ReadfromXMLcontraseña();
+                ReadfromXMLinstancia();
+                ReadfromXMLusuario();
+                panelBuscandoServidor.Visible = false;
+                //PanelSinServidor.Location = New Point((Width - PanelSinServidor.Width) / 2, (Height - PanelSinServidor.Height) / 2)
+                PanelSinServidor.Visible = true;
             }
         }
 
@@ -204,7 +264,47 @@ namespace CRUD.Servidores
             doc.Save(writer);
             writer.Close();
         }
+        private string[] basesDeDatosContrasenna(string instancia)
+        {
 
+            string[] basesSys = { "master", "model", "msdb", "tempdb" };
+
+            string sCnn = "Server=" + instancia + "; " + "database=master; integrated security=false; User=" + txtusuario.Text + "; password=" + txtcontraseña.Text;
+
+
+            string sel = "SELECT name FROM sysdatabases";
+            try
+            {
+                SqlDataAdapter da = new SqlDataAdapter(sel, sCnn);
+                da.Fill(dt);
+                bases = new string[dt.Rows.Count];
+                int k = -1;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string s = dt.Rows[i]["name"].ToString();
+                    // Solo asignar las bases que no son del sistema
+                    if (Array.IndexOf(basesSys, s) == -1)
+                    {
+                        k += 1;
+                        bases[k] = s;
+                    }
+                }
+
+                if (k == -1)
+                {
+                    return null;
+                }
+                Array.Resize(ref bases, k + 1);
+                return bases;
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            return null;
+
+        }
         private string [] baseDeDatos(string  instancia)
         {
             string[] basesSys = { "master", "model", "msdb", "tempdb" };
@@ -288,7 +388,7 @@ namespace CRUD.Servidores
 
         }
 
-        public void ReadfromXMUsuario()
+        public void ReadfromXMLusuario()
         {
             try
             {
