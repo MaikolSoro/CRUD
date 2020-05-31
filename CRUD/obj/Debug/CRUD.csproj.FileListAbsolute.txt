@@ -7,3 +7,4 @@ C:\Users\admin\source\repos\CRUD\CRUD\bin\Debug\CRUD.exe
 C:\Users\admin\source\repos\CRUD\CRUD\bin\Debug\CRUD.pdb
 C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.exe
 C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.pdb
+C:\Users\admin\source\repos\CRUD\CRUD\obj\Debug\CRUD.CONEXION_MANUAL.resources

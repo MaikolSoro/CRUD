@@ -143,6 +143,7 @@ namespace CRUD.Servidores
                 }
             } else
             {
+                // Conexion a sqlServer no express
                 servidorsql = ".";
                 baseDeDatos(servidorsql);
 
