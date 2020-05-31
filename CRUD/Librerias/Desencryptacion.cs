@@ -32,7 +32,16 @@ namespace CRUD.Librerias
             return CnString;
 
         }
+        public static object checkServerWEB()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("Conexion_web.xml");
+            XmlElement root = doc.DocumentElement;
+            dbcnString = root.Attributes.Item(0).Value;
+            CnString = (aes.Decrypt(dbcnString, appPwdUnique, int.Parse("256")));
+            return CnString;
 
+        }
 
 
     }

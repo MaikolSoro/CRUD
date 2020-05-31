@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion\Conexion.cs" />
+    <Compile Include="Conexion\ConexionWeb.cs" />
     <Compile Include="Conexion\CONEXION_MANUAL.cs">
       <SubType>Form</SubType>
     </Compile>
