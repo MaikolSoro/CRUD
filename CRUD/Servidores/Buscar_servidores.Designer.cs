@@ -318,6 +318,7 @@ namespace CRUD.Servidores
             // Timer1
             // 
             this.Timer1.Interval = 10;
+            this.Timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // Buscar_servidores
             // 
@@ -336,6 +337,7 @@ namespace CRUD.Servidores
             this.Name = "Buscar_servidores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Buscar_servidores_FormClosing);
             this.Load += new System.EventHandler(this.Buscar_servidores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.PanelSinServidor.ResumeLayout(false);

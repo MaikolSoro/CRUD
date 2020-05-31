@@ -115,7 +115,7 @@ namespace CRUD
         {
             obtenerDatos();
 			ReadfromXML();
-			ReadfromXMLWEB();
+			//ReadfromXMLWEB();
 		}
 
         private void btnSave_Click(System.Object sender, System.EventArgs e)

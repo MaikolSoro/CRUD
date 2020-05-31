@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using CRUD.Generador;
 using CRUD.Librerias;
 
 namespace CRUD.Servidores
@@ -25,6 +20,7 @@ namespace CRUD.Servidores
         private int contador;
         private string dbcnString;
 
+        private static Buscar_servidores _DefaultInstance;
         public Buscar_servidores()
         {
             InitializeComponent();
@@ -34,7 +30,7 @@ namespace CRUD.Servidores
         {
             panelBuscandoServidor.Location = new Point((Width - panelBuscandoServidor.Width) / 2, (Height - panelBuscandoServidor.Height) / 2);
             PanelSinServidor.Location = new Point((Width - PanelSinServidor.Width) / 2, (Height - PanelSinServidor.Height) / 2);
-
+            Timer1.Start();
         }
 
         /// <summary>
@@ -72,7 +68,7 @@ namespace CRUD.Servidores
         {
             if(string.IsNullOrEmpty(NIVEL))
             {
-                ReadfromXMLcontraseña();
+                ReadfromXMLcontrasenna();
                 ReadfromXMLinstancia();
                 ReadfromXMLusuario();
                 if(usuario == "NULO")
@@ -98,7 +94,7 @@ namespace CRUD.Servidores
             }
             else
             {
-                ReadfromXMLcontraseña();
+                ReadfromXMLcontrasenna();
                 ReadfromXMLinstancia();
                 ReadfromXMLusuario();
                 panelBuscandoServidor.Visible = false;
@@ -354,7 +350,7 @@ namespace CRUD.Servidores
         /// <summary>
         /// Desencrypto la contraseña para leer el archivo
         /// </summary>
-        public void ReadfromXMLcontraseña()
+        public void ReadfromXMLcontrasenna()
         {
             try
             {
@@ -405,6 +401,32 @@ namespace CRUD.Servidores
 
             }
 
+        }
+
+        private void Buscar_servidores_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Environment.Exit(1);
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            contador += 1;
+            if (contador == 40)
+            {
+                Timer1.Stop();
+                comprobar_conexiones();
+            }
+        }
+
+        public static Buscar_servidores DefaultInstance
+        {
+            get
+            {
+                if (_DefaultInstance == null || _DefaultInstance.IsDisposed)
+                    _DefaultInstance = new Buscar_servidores();
+
+                return _DefaultInstance;
+            }
         }
     }
 }
