@@ -31,6 +31,7 @@ namespace CRUD
 		private string use;
 		private string indicador;
 		private int contador;
+		private string id;
 		public Generador_UI()
 		{
 			InitializeComponent();
@@ -274,6 +275,79 @@ namespace CRUD
 			txtInsertarSQLServer.Text = txtInsertarSQLServer.Text.Substring(0, largo - 1);
 			txtInsertarSQLServer.Text = txtInsertarSQLServer.Text + ")";
 		}
+		public void editar()
+		{
+			use = "USE " + txtbasededatos.Text + "\r" + "GO" + "\r";
+			tituloProcedimiento = "CREATE PROC editar_" + tabla;
+			txtEditar.Text = use + tituloProcedimiento;
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				string longitud = Convert.ToString(row.Cells["Longitud"].Value);
+				int enumeracion = Convert.ToInt32(row.Cells["Enumeracion"].Value);
+
+				string longitudNumericaEntera = Convert.ToString(row.Cells["column1"].Value);
+				string longitudNumericaDecimal = Convert.ToString(row.Cells["column2"].Value);
+
+
+
+				if (enumeracion == 1)
+				{
+					id = parametros;
+				}
+				if (longitud == "-1")
+				{
+					longitud = "MAX";
+				}
+				string Longitud_completa = "(" + longitud + ")";
+				if (string.IsNullOrEmpty(longitud))
+				{
+					if (tipo == "numeric" || tipo == "decimal")
+					{
+						string longitud_para_numericos = "(" + longitudNumericaEntera + "," + longitudNumericaDecimal + ")";
+						parametros = "@" + parametros + " As " + Tipo + longitud_para_numericos + ",";
+					}
+					else
+					{
+						parametros = "@" + parametros + " As " + Tipo + ",";
+
+					}
+
+				}
+				else if (!string.IsNullOrEmpty(longitud) && tipo != "image")
+				{
+					parametros = "@" + parametros + " As " + Tipo + Longitud_completa + ",";
+				}
+				else if (!string.IsNullOrEmpty(longitud) && tipo == "image")
+				{
+					parametros = "@" + parametros + " As " + Tipo + ",";
+				}
+				txtEditar.Text = txtEditar.Text + "\r" + parametros;
+
+			}
+			largo = txtEditar.Text.Length;
+			txtEditar.Text = txtEditar.Text.Substring(0, largo - 1);
+			txtEditar.Text = txtEditar.Text + "\r" + "As" + "\r";
+
+
+			funcion = "UPDATE " + tabla + " Set" + "\r";
+
+
+			txtEditar.Text = txtEditar.Text + funcion;
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				int Enumeracion = Convert.ToInt32(row.Cells["Enumeracion"].Value);
+				if (Enumeracion > 1)
+				{
+					parametros = parametros + "=@" + parametros + ",";
+					txtEditar.Text = txtEditar.Text + "\r" + parametros;
+				}
+			}
+			largo = txtEditar.Text.Length;
+			txtEditar.Text = txtEditar.Text.Substring(0, largo - 1) + "\r" + "Where " + id + "=" + "@" + id;
+		}
 		/// <summary>
 		/// Eliminar en SqlServer
 		/// </summary>
@@ -304,6 +378,25 @@ namespace CRUD
 			}
 		}
 
+		public void mostrarsql()
+		{
+			use = "USE " + txtbasededatos.Text + "\r" + "GO" + "\r";
+
+			tituloProcedimiento = use + "CREATE PROC mostrar_" + tabla;
+			txtMostrar.Text = tituloProcedimiento;
+
+			txtMostrar.Text = txtMostrar.Text + "\r" + "As" + "\r";
+			funcion = "Select * FROM " + tabla + "\r";
+			txtMostrar.Text = txtMostrar.Text + funcion;
+
+
+
+		}
+		public void crudSQLCompleto()
+		{
+			txtCrudSQLCompleto.Text = txtInsertarSQLServer.Text + "\r" + "\r" + txtEditar.Text + "\r" + "\r" + txtMostrar.Text + "\r" + "\r" + txtEliminar.Text;
+		}
+
 		public void SQLServer()
 		{
 			btnSQLSERVER.BackColor = Color.DodgerBlue;
@@ -316,7 +409,9 @@ namespace CRUD
 
 
 			InsertarSQLServer();
+			editar();
 			eliminar();
+			crudSQLCompleto();
 			
 
 		}
