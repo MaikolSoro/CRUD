@@ -29,6 +29,8 @@ namespace CRUD
 		private string usuario;
 		private string contrasenna;
 		private string use;
+		private string indicador;
+		private int contador;
 		public Generador_UI()
 		{
 			InitializeComponent();
@@ -176,7 +178,9 @@ namespace CRUD
 
 			}
 		}
-
+		/// <summary>
+		/// Creo el PROC de Insertar en SQLSERVER
+		/// </summary>
 		public void InsertarSQLServer()
         {
 
@@ -270,6 +274,35 @@ namespace CRUD
 			txtInsertarSQLServer.Text = txtInsertarSQLServer.Text.Substring(0, largo - 1);
 			txtInsertarSQLServer.Text = txtInsertarSQLServer.Text + ")";
 		}
+		/// <summary>
+		/// Eliminar en SqlServer
+		/// </summary>
+		public void eliminar()
+		{
+			use = "USE " + txtbasededatos.Text + "\r" + "GO" + "\r";
+
+			tituloProcedimiento = use + "CREATE PROC eliminar_" + (tabla + "\r");
+			txtEliminar.Text = tituloProcedimiento;
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+
+				int Enumeracion = Convert.ToInt32(row.Cells["Enumeracion"].Value);
+
+				if (Enumeracion == 1)
+				{
+					var parametro_puro = parametros;
+					parametros = "@" + parametros + " As " + Tipo + "\r";
+					txtEliminar.Text = txtEliminar.Text + parametros + "\r" + "As" + "\r";
+					funcion = "DELETE FROM " + tabla + "\r";
+					txtEliminar.Text = txtEliminar.Text + funcion;
+					txtEliminar.Text = txtEliminar.Text + "WHERE " + parametro_puro + "=@" + parametro_puro;
+				}
+			}
+		}
 
 		public void SQLServer()
 		{
@@ -283,9 +316,49 @@ namespace CRUD
 
 
 			InsertarSQLServer();
+			eliminar();
 			
 
 		}
 
+        private void Generador_UI_Load(object sender, EventArgs e)
+        {
+			ReadfromXMLusuario();
+			if (usuario == "NULO")
+			{
+				ReadfromXMLinstancia();
+				basesDeDatos(servidor);
+				Tamaño_automatico_de_datatables.Multilinea(ref datalistado_TABLAS);
+				datalistado_TABLAS.Columns[0].Width = datalistado_TABLAS.Width - 50;
+				txtbasededatos.DataSource = dt;
+				txtbasededatos.DisplayMember = "name";
+			}
+			else
+			{
+				ReadfromXMLinstancia();
+				ReadfromXMLcontrasenna();
+				ReadfromXMLusuario();
+				basesDeDatosContrasenna(servidor);
+
+				Tamaño_automatico_de_datatables.Multilinea(ref datalistado_TABLAS);
+				datalistado_TABLAS.Columns[0].Width = datalistado_TABLAS.Width - 50;
+				txtbasededatos.DataSource = dt;
+				txtbasededatos.DisplayMember = "name";
+			}
+			indicador = "SQLSERVER";
+			PanelBienvenida.Visible = true;
+			PanelBienvenida.Dock = DockStyle.Fill;
+			PanelSQLServer.Dock = DockStyle.Fill;
+			PanelCsharp.Dock = DockStyle.Fill;
+			PanelVb.Dock = DockStyle.Fill;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+		}
+
+        private void VerCodigo_Click(object sender, EventArgs e)
+        {
+			indicador = "SQLSERVER";
+			SQLServer();
+
+		}
 	}
 }

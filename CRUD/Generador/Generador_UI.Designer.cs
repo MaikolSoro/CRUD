@@ -219,7 +219,7 @@ namespace CRUD
             this.Panel19 = new System.Windows.Forms.Panel();
             this.Panel28 = new System.Windows.Forms.Panel();
             this.Panel30 = new System.Windows.Forms.Panel();
-            this.Button1 = new System.Windows.Forms.Button();
+            this.VerCodigo = new System.Windows.Forms.Button();
             this.Panel34 = new System.Windows.Forms.Panel();
             this.Label22 = new System.Windows.Forms.Label();
             this.Button2 = new System.Windows.Forms.Button();
@@ -2303,7 +2303,7 @@ namespace CRUD
             // 
             // Panel30
             // 
-            this.Panel30.Controls.Add(this.Button1);
+            this.Panel30.Controls.Add(this.VerCodigo);
             this.Panel30.Controls.Add(this.Panel34);
             this.Panel30.Controls.Add(this.Button2);
             this.Panel30.Controls.Add(this.PictureBox3);
@@ -2317,25 +2317,26 @@ namespace CRUD
             this.Panel30.Size = new System.Drawing.Size(1348, 52);
             this.Panel30.TabIndex = 13;
             // 
-            // Button1
+            // VerCodigo
             // 
-            this.Button1.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Button1.FlatAppearance.BorderSize = 0;
-            this.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.Button1.ForeColor = System.Drawing.Color.White;
-            this.Button1.Image = ((System.Drawing.Image)(resources.GetObject("Button1.Image")));
-            this.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Button1.Location = new System.Drawing.Point(558, 24);
-            this.Button1.Name = "Button1";
-            this.Button1.Size = new System.Drawing.Size(276, 28);
-            this.Button1.TabIndex = 37;
-            this.Button1.Text = "VER CODIGO FUENTE Y COMO SE HIZO";
-            this.Button1.UseVisualStyleBackColor = false;
+            this.VerCodigo.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.VerCodigo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.VerCodigo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.VerCodigo.FlatAppearance.BorderSize = 0;
+            this.VerCodigo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.VerCodigo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.VerCodigo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VerCodigo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.VerCodigo.ForeColor = System.Drawing.Color.White;
+            this.VerCodigo.Image = ((System.Drawing.Image)(resources.GetObject("VerCodigo.Image")));
+            this.VerCodigo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.VerCodigo.Location = new System.Drawing.Point(558, 24);
+            this.VerCodigo.Name = "VerCodigo";
+            this.VerCodigo.Size = new System.Drawing.Size(276, 28);
+            this.VerCodigo.TabIndex = 37;
+            this.VerCodigo.Text = "VER CODIGO FUENTE Y COMO SE HIZO";
+            this.VerCodigo.UseVisualStyleBackColor = false;
+            this.VerCodigo.Click += new System.EventHandler(this.VerCodigo_Click);
             // 
             // Panel34
             // 
@@ -2673,6 +2674,7 @@ namespace CRUD
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CRUD Versión Beta v.1.0.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Generador_UI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datalistado_TABLAS)).EndInit();
             this.Panel1.ResumeLayout(false);
             this.Panel1.PerformLayout();
@@ -2949,7 +2951,7 @@ namespace CRUD
 		internal ToolStripDropDownButton ToolStripDropDownButton2;
 		internal ToolStripStatusLabel ToolStripStatusLabel1;
 		internal ToolStripMenuItem AcercaDeToolStripMenuItem;
-		internal Button Button1;
+		internal Button VerCodigo;
 		internal Panel Panel34;
 		internal Label Label22;
 		internal Button Button2;

@@ -19,7 +19,7 @@ namespace CRUD
             //var main = new Servidores.Buscar_servidores();
             //main.FormClosed += new FormClosedEventHandler(FormClosed);
             //main.Show();
-            Application.Run(new Presentacion());
+            Application.Run(new Generador_UI());
         }
 
         private static void FormClosed(object sender, FormClosedEventArgs e)
