@@ -477,13 +477,89 @@ namespace CRUD
 
 
 		}
+
+		public void mostrar_vb()
+		{
+			string L1 = "Public Sub " + "mostrar_" + tabla + "_en_datagridview" + "\r";
+			string L2 = "Dim dt As New DataTable" + "\r";
+			string L3 = "Dim da As SqlDataAdapter" + "\r";
+			string L4 = "Try" + "\r";
+			string L5 = "abrir()" + "\r";
+			string nombre_scrypt2 = "mostrar_" + tabla;
+			string L6 = "da = New SqlDataAdapter(" + labelComillas.Text + nombre_scrypt2 + labelComillas.Text + ", conexion)" + "\r";
+			string L7 = "da.Fill(dt)" + "\r";
+			string L8 = "Tu_datagridview.DataSource = dt" + "\r";
+			string L9 = "Cerrar()" + "\r";
+			string L10 = "Catch ex As Exception" + "\r";
+			string L11 = "MessageBox.Show(ex.StackTrace)" + "\r";
+			string L12 = "End Try";
+			txtMostrarVb.Text = L1 + L2 + L3 + L4 + L5 + L6 + L7 + L8 + L9 + L10 + L11 + L12 + "\r" + "End Sub";
+		}
+
+		public void editar_vb()
+		{
+			string PROCESO = "Public Sub " + "editar_" + tabla + "\r";
+			string nombre_scrypt = "Editar_" + tabla;
+			string L1 = PROCESO + "Try" + "\r";
+			string L2 = "abrir()" + "\r";
+			string L3 = "Dim cmd As New SqlCommand" + "\r";
+			string L4 = "cmd = New SqlCommand(" + labelComillas.Text + nombre_scrypt + labelComillas.Text + ", conexion)" + "\r";
+			string L5 = "cmd.CommandType = 4" + "\r";
+			txtEditarVb.Text = L1 + L2 + L3 + L4 + L5;
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				if (Tipo != "image")
+				{
+					parametros = "@" + parametros;
+					string cmdparametro = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", txt" + parametros2 + ".Text)";
+					txtEditarVb.Text = txtEditarVb.Text + "\r" + cmdparametro;
+				}
+
+
+
+			}
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+
+				if (Tipo == "image")
+				{
+					parametros = "@" + parametros;
+					string L6 = "Dim ms As New IO.MemoryStream()" + "\r";
+					string L7 = "AQUI_el_nombre_de_TU_PICTUREBOX.Image.Save(ms, AQUI_el_nombre_de_TU_PICTUREBOX.Image.RawFormat)" + "\r";
+					string L8 = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", ms.GetBuffer)" + "\r";
+
+					string LUNIDOS = "\r" + L6 + L7 + L8;
+					txtEditarVb.Text = txtEditarVb.Text + LUNIDOS;
+				}
+
+
+			}
+			string L9 = "\r" + "cmd.ExecuteNonQuery()" + "\r";
+			string L10 = "Cerrar()" + "\r";
+			string L11 = "Catch ex As Exception" + "\r";
+			string L12 = "MsgBox(ex.StackTrace)" + "\r";
+			string L13 = "End Try";
+			txtEditarVb.Text = txtEditarVb.Text + L9 + L10 + L11 + L12 + L13 + "\r" + "End Sub";
+
+		}
 		public void VisualBasic()
 		{
 			btnVb.BackColor = Color.DodgerBlue;
 			btnSQLSERVER.BackColor = Color.FromArgb(45, 45, 48);
 			btnCsharp.BackColor = Color.FromArgb(45, 45, 48);
 			
+			mostrar_vb();
 			insertar_vb();
+			editar_vb();
 		}
 
 		private void Generador_UI_Load(object sender, EventArgs e)
