@@ -410,13 +410,83 @@ namespace CRUD
 
 			InsertarSQLServer();
 			editar();
+			mostrarsql();
 			eliminar();
 			crudSQLCompleto();
 			
 
 		}
 
-        private void Generador_UI_Load(object sender, EventArgs e)
+		public void insertar_vb()
+		{
+			string PROCESO = "Public Sub " + "Insertar_" + tabla + "\r";
+			string nombre_scrypt = "Insertar_" + tabla;
+			string L1 = PROCESO + "Try" + "\r";
+			string L2 = "abrir()" + "\r";
+			string L3 = "Dim cmd As New SqlCommand" + "\r";
+			string L4 = "cmd = New SqlCommand(" + labelComillas.Text + nombre_scrypt + labelComillas.Text + ", conexion)" + "\r";
+			string L5 = "cmd.CommandType = 4" + "\r";
+			txtInsertarVb.Text = L1 + L2 + L3 + L4 + L5;
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				int Enumeracion = Convert.ToInt32(row.Cells["Enumeracion"].Value);
+				if (Enumeracion > 1)
+				{
+					string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+					if (Tipo != "Image")
+					{
+						parametros = "@" + parametros;
+						string cmdparametro = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", txt" + parametros2 + ".Text)";
+						txtInsertarVb.Text = txtInsertarVb.Text + "\r" + cmdparametro;
+					}
+				}
+
+
+			}
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				int Enumeracion = Convert.ToInt32(row.Cells["Enumeracion"].Value);
+				if (Enumeracion > 1)
+				{
+					if (Tipo == "image")
+					{
+						parametros = "@" + parametros;
+						string L6 = "Dim ms As New IO.MemoryStream()" + "\r";
+						string L7 = "AQUI_el_nombre_de_TU_PICTUREBOX.Image.Save(ms, AQUI_el_nombre_de_TU_PICTUREBOX.Image.RawFormat)" + "\r";
+						string L8 = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", ms.GetBuffer)" + "\r";
+
+						string LUNIDOS = "\r" + L6 + L7 + L8;
+						txtInsertarVb.Text = txtInsertarVb.Text + LUNIDOS;
+					}
+				}
+
+			}
+			string L9 = "\r" + "cmd.ExecuteNonQuery()" + "\r";
+			string L10 = "Cerrar()" + "\r";
+			string L11 = "Catch ex As Exception" + "\r";
+			string L12 = "MsgBox(ex.StackTrace)" + "\r";
+			string L13 = "End Try";
+			txtInsertarVb.Text = txtInsertarVb.Text + L9 + L10 + L11 + L12 + L13 + "\r" + "End Sub";
+
+
+		}
+		public void VisualBasic()
+		{
+			btnVb.BackColor = Color.DodgerBlue;
+			btnSQLSERVER.BackColor = Color.FromArgb(45, 45, 48);
+			btnCsharp.BackColor = Color.FromArgb(45, 45, 48);
+			
+			insertar_vb();
+		}
+
+		private void Generador_UI_Load(object sender, EventArgs e)
         {
 			ReadfromXMLusuario();
 			if (usuario == "NULO")
