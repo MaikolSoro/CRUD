@@ -65,7 +65,7 @@ namespace CRUD
             this.Panel1.Controls.Add(this.PictureBox3);
             this.Panel1.Controls.Add(this.Panel2);
             this.Panel1.Location = new System.Drawing.Point(15, 30);
-            this.Panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Panel1.Margin = new System.Windows.Forms.Padding(4);
             this.Panel1.Name = "Panel1";
             this.Panel1.Size = new System.Drawing.Size(763, 367);
             this.Panel1.TabIndex = 17;
@@ -102,9 +102,9 @@ namespace CRUD
             // 
             this.PictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.PictureBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox3.Image")));
+            this.PictureBox3.Image = global::CRUD.Properties.Resources.connec;
             this.PictureBox3.Location = new System.Drawing.Point(0, 133);
-            this.PictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.PictureBox3.Name = "PictureBox3";
             this.PictureBox3.Size = new System.Drawing.Size(763, 176);
             this.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -119,7 +119,7 @@ namespace CRUD
             this.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Panel2.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.Panel2.Location = new System.Drawing.Point(0, 309);
-            this.Panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Panel2.Margin = new System.Windows.Forms.Padding(4);
             this.Panel2.Name = "Panel2";
             this.Panel2.Size = new System.Drawing.Size(763, 58);
             this.Panel2.TabIndex = 16;
@@ -128,7 +128,7 @@ namespace CRUD
             // 
             this.PictureBox4.Image = global::CRUD.Properties.Resources.connec;
             this.PictureBox4.Location = new System.Drawing.Point(107, 4);
-            this.PictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.PictureBox4.Name = "PictureBox4";
             this.PictureBox4.Size = new System.Drawing.Size(53, 42);
             this.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -156,7 +156,7 @@ namespace CRUD
             this.Controls.Add(this.Panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Presentacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Presentacion";
