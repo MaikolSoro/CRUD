@@ -17,13 +17,13 @@ namespace CRUD
 		private extern static void ReleaseCapture();
 		[DllImport("user32.DLL", EntryPoint = "SendMessage")]
 		private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+		private string indicador_de_parametros;
 		public string tituloProcedimiento;
 		public string funcion;
 		public string valores;
 		public int largo;
 		public string tabla;
 		private string[] bases;
-		private DataTable dt = new DataTable();
 		private string dbcnString;
 		private string servidor;
 		private string usuario;
@@ -32,6 +32,7 @@ namespace CRUD
 		private string indicador;
 		private int contador;
 		private string id;
+		private DataTable dt = new DataTable();
 		public Generador_UI()
 		{
 			InitializeComponent();
@@ -599,6 +600,163 @@ namespace CRUD
         {
 			indicador = "SQLSERVER";
 			SQLServer();
+
+		}
+
+		private void psEstructura_Tabla(string strTabla)
+		{
+			string msCadenaSQL = "Data Source=" + servidor + ";Initial Catalog=" + txtbasededatos.Text + ";Integrated Security=True";
+			if (indicador_de_parametros == "CSHARP")
+			{
+				this.datalistadoEstructuraCONParametros.Rows.Clear();
+			}
+			else
+			{
+				this.datalistadoEstructura.Rows.Clear();
+			}
+			try
+			{
+				SqlConnection conConexion = new SqlConnection(msCadenaSQL);
+				SqlCommand coSQL = new SqlCommand(@"Select *" + " FROM INFORMATION_SCHEMA." + "COLUMNS WHERE TABLE_NAME='" + strTabla + "'", conConexion);
+				SqlDataReader drColumnas = null;
+				conConexion.Open();
+				drColumnas = coSQL.ExecuteReader();
+				while (drColumnas.Read())
+				{
+					if (indicador_de_parametros == "CSHARP")
+					{
+						this.datalistadoEstructuraCONParametros.Rows.Add(drColumnas["COLUMN_NAME"], drColumnas["DATA_TYPE"], drColumnas["CHARACTER_MAXIMUM_LENGTH"], drColumnas["NUMERIC_PRECISION"], drColumnas["NUMERIC_SCALE"], drColumnas[5].ToString(), drColumnas[1].ToString(), drColumnas[2].ToString(), drColumnas[3].ToString(), drColumnas[4].ToString(), drColumnas[5].ToString(), drColumnas[7].ToString(), drColumnas[8].ToString(), drColumnas[9].ToString(), drColumnas[10].ToString(), drColumnas[11].ToString(), drColumnas[12].ToString());
+					}
+					else
+					{
+						this.datalistadoEstructura.Rows.Add(drColumnas["COLUMN_NAME"], drColumnas["DATA_TYPE"], drColumnas["CHARACTER_MAXIMUM_LENGTH"], drColumnas["NUMERIC_PRECISION"], drColumnas["NUMERIC_SCALE"], drColumnas[5].ToString(), drColumnas[1].ToString(), drColumnas[2].ToString(), drColumnas[3].ToString(), drColumnas[4].ToString(), drColumnas[5].ToString(), drColumnas[7].ToString(), drColumnas[8].ToString(), drColumnas[9].ToString(), drColumnas[10].ToString(), drColumnas[11].ToString(), drColumnas[12].ToString());
+					}
+
+				}
+				drColumnas.Close();
+				conConexion.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.StackTrace, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+		private void psEstructura_TablaContrasenna(string strTabla)
+		{
+			string msCadenaSQL = "Data Source=" + servidor + ";Initial Catalog=" + txtbasededatos.Text + ";Integrated Security=false; " + "User Id=" + usuario + ";Password=" + contrasenna;
+
+			this.datalistadoEstructura.Rows.Clear();
+			try
+			{
+				SqlConnection conConexion = new SqlConnection(msCadenaSQL);
+				SqlCommand coSQL = new SqlCommand(@"SELECT COLUMN_NAME,DATA_TYPE,” _
+                                        & “CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE FROM INFORMATION_SCHEMA.” _
+                                        & “COLUMNS WHERE TABLE_NAME='" + strTabla + "'", conConexion);
+				SqlDataReader drColumnas = null;
+				conConexion.Open();
+				drColumnas = coSQL.ExecuteReader();
+				while (drColumnas.Read())
+				{
+
+					this.datalistadoEstructura.Rows.Add(drColumnas["COLUMN_NAME"], drColumnas["DATA_TYPE"]);
+				}
+				drColumnas.Close();
+				conConexion.Close();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.StackTrace, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void Formulas_Click(object sender, EventArgs e)
+        {
+			indicador = "VB";
+
+
+			PanelSQLServer.Visible = false;
+			PanelCsharp.Visible = false;
+			PanelVb.Visible = true;
+
+
+
+			try
+			{
+				tabla = Convert.ToString(this.datalistado_TABLAS.SelectedCells[0].Value);
+
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.StackTrace);
+			}
+			if (usuario == "NULO")
+			{
+				this.psEstructura_Tabla(tabla);
+			}
+			else
+			{
+				this.psEstructura_TablaContrasenna(tabla);
+			}
+			VisualBasic();
+		}
+
+		public void insertar_C_sharp()
+		{
+			string proceso = "private void " + "Insertar_" + tabla + "(" + ")" + "\r" + "{" + "\r";
+
+			string nombre_scrypt2 = "Insertar_" + tabla;
+			string L1 = proceso + "try" + "\r" + "{" + "\r";
+
+			string L2 = "CONEXION.CONEXIONMAESTRA.abrir();" + "\r";
+			string L4 = "SqlCommand cmd = new SqlCommand(" + labelComillas.Text + nombre_scrypt2 + labelComillas.Text + ", CONEXION.CONEXIONMAESTRA.conectar);" + "\r";
+			string L5 = "cmd.CommandType = CommandType.StoredProcedure;";
+			txtInsertarCsharp.Text = L1 + L2 + L4 + L5;
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				int Enumeracion = Convert.ToInt32(row.Cells["Enumeracion"].Value);
+				if (Enumeracion > 1)
+				{
+					if (Tipo != "image")
+					{
+						parametros = "@" + parametros;
+						string cmdparametro = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", txt" + parametros2 + ".Text);";
+						txtInsertarCsharp.Text = txtInsertarCsharp.Text + "\r" + cmdparametro;
+					}
+				}
+
+			}
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+
+				if (Tipo == "image")
+				{
+					parametros = "@" + parametros;
+					string L6 = "System.IO.MemoryStream ms = new System.IO.MemoryStream();" + "\r";
+					string L7 = "AQUI_el_nombre_de_TU_PICTUREBOX.Image.Save(ms, AQUI_el_nombre_de_TU_PICTUREBOX.Image.RawFormat);" + "\r";
+					string L8 = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", ms.GetBuffer());" + "\r";
+
+					string LUNIDOS = "\r" + L6 + L7 + L8;
+					txtInsertarCsharp.Text = txtInsertarCsharp.Text + LUNIDOS;
+				}
+			}
+			string L9 = "\r" + "cmd.ExecuteNonQuery();" + "\r";
+			string L10 = "CONEXION.CONEXIONMAESTRA.Cerrar();" + "\r";
+			string llave2 = "}" + "\r";
+			string L11 = llave2 + "catch (Exception ex)" + "\r";
+			string llave3 = "{" + "\r";
+			string L12 = "MessageBox.Show(ex.StackTrace);" + "\r";
+			string L13 = "}";
+			txtInsertarCsharp.Text = txtInsertarCsharp.Text + L9 + L10 + L11 + llave3 + L12 + L13 + "\r" + "}";
+
+
 
 		}
 	}

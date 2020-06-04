@@ -222,7 +222,7 @@ namespace CRUD
             this.VerCodigo = new System.Windows.Forms.Button();
             this.Panel34 = new System.Windows.Forms.Panel();
             this.Label22 = new System.Windows.Forms.Label();
-            this.Button2 = new System.Windows.Forms.Button();
+            this.Formulas = new System.Windows.Forms.Button();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.Button7 = new System.Windows.Forms.Button();
             this.Button17 = new System.Windows.Forms.Button();
@@ -2305,7 +2305,7 @@ namespace CRUD
             // 
             this.Panel30.Controls.Add(this.VerCodigo);
             this.Panel30.Controls.Add(this.Panel34);
-            this.Panel30.Controls.Add(this.Button2);
+            this.Panel30.Controls.Add(this.Formulas);
             this.Panel30.Controls.Add(this.PictureBox3);
             this.Panel30.Controls.Add(this.Button7);
             this.Panel30.Controls.Add(this.Button17);
@@ -2360,25 +2360,26 @@ namespace CRUD
             this.Label22.Text = "2";
             this.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Button2
+            // Formulas
             // 
-            this.Button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Button2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Button2.FlatAppearance.BorderSize = 0;
-            this.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Button2.ForeColor = System.Drawing.Color.White;
-            this.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Button2.Location = new System.Drawing.Point(417, 24);
-            this.Button2.Name = "Button2";
-            this.Button2.Size = new System.Drawing.Size(118, 28);
-            this.Button2.TabIndex = 39;
-            this.Button2.Text = "Formulas aplicadas";
-            this.Button2.UseVisualStyleBackColor = true;
-            this.Button2.Visible = false;
+            this.Formulas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Formulas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Formulas.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Formulas.FlatAppearance.BorderSize = 0;
+            this.Formulas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Formulas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Formulas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Formulas.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Formulas.ForeColor = System.Drawing.Color.White;
+            this.Formulas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Formulas.Location = new System.Drawing.Point(417, 24);
+            this.Formulas.Name = "Formulas";
+            this.Formulas.Size = new System.Drawing.Size(118, 28);
+            this.Formulas.TabIndex = 39;
+            this.Formulas.Text = "Formulas aplicadas";
+            this.Formulas.UseVisualStyleBackColor = true;
+            this.Formulas.Visible = false;
+            this.Formulas.Click += new System.EventHandler(this.Formulas_Click);
             // 
             // PictureBox3
             // 
@@ -2954,7 +2955,7 @@ namespace CRUD
 		internal Button VerCodigo;
 		internal Panel Panel34;
 		internal Label Label22;
-		internal Button Button2;
+		internal Button Formulas;
 		internal PictureBox PictureBox3;
 		internal Panel PanelMvvcCsharp;
 		internal RichTextBox txtModeloCsharp;
