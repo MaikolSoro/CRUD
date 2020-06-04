@@ -813,6 +813,52 @@ namespace CRUD
 
 		}
 
+		public void mostrar_datagridview_C_sharp()
+		{
+			string proceso = null;
+			string L4 = null;
+			proceso = "Private void " + "mostrar_en_Datagridview_" + tabla + "(" + ")" + "\r" + "{" + "\r";
+
+			string nombre_scrypt2 = "mostrar_" + tabla;
+			string L1 = proceso + "Try" + "\r" + "{" + "\r";
+			var indicar_parametro = "da.SelectCommand.CommandType = CommandType.StoredProcedure;";
+			string L2 = "CONEXION.CONEXIONMAESTRA.abrir();" + "\r";
+
+			L4 = "da = New SqlDataAdapter(" + labelComillas.Text + nombre_scrypt2 + labelComillas.Text + ", CONEXION.CONEXIONMAESTRA.conectar);" + "\r";
+
+			txtMostrarCsharp.Text = L1 + L2 + L4;
+			if (ConParametrosCsharp.Checked == true)
+			{
+				foreach (DataGridViewRow row in datalistadoEstructuraCONParametros.Rows)
+				{
+					bool Marcar = false;
+					Marcar = Convert.ToBoolean(row.Cells["Marcar"].Value);
+					if (Marcar)
+					{
+						string parametros = Convert.ToString(row.Cells["Parametros2"].Value);
+						string parametros2 = Convert.ToString(row.Cells["Parametros2"].Value);
+						string Tipo = Convert.ToString(row.Cells["Tipo2"].Value);
+						if (Tipo != "image")
+						{
+							parametros = "@" + parametros;
+							string cmdparametro = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", txt" + parametros2 + ".Text);";
+							txtMostrarCsharp.Text = txtMostrarCsharp.Text + "\r" + cmdparametro;
+						}
+					}
+				}
+				string L5 = "da.Fill(dt);" + "\r" + "Tu_Datagridview.DataSource = dt;" + "\r" + "CONEXION.CONEXIONMAESTRA.Cerrar();" + "\r";
+				string L6 = "}" + "\r" + "catch (Exception ex)" + "\r" + "{" + "\r" + "MessageBox.Show(ex.StackTrace);" + "\r" + "}" + "\r" + "}";
+				txtMostrarCsharp.Text = txtMostrarCsharp.Text + "\r" + L5 + L6;
+			}
+			else
+			{
+				string L5 = "da.Fill(dt);" + "\r" + "Tu_Datagridview.DataSource = dt;" + "\r" + "CONEXION.CONEXIONMAESTRA.Cerrar();" + "\r";
+				string L6 = "}" + "\r" + "catch (Exception ex)" + "\r" + "{" + "\r" + "MessageBox.Show(ex.StackTrace);" + "\r" + "}" + "\r" + "}";
+				txtMostrarCsharp.Text = txtMostrarCsharp.Text + L5 + L6;
+			}
+			
+		}
+
 		public void csharp()
 		{
 			btnCsharp.BackColor = Color.DodgerBlue;
@@ -824,6 +870,7 @@ namespace CRUD
 
 			insertar_C_sharp();
 			editar_C_sharp();
+			mostrar_datagridview_C_sharp();
 		}
 
 	}
