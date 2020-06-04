@@ -759,5 +759,72 @@ namespace CRUD
 
 
 		}
+
+		public void editar_C_sharp()
+		{
+			string proceso = "Private void " + "editar" + tabla + "(" + ")" + "\r" + "{" + "\r";
+
+			string nombre_scrypt2 = "editar_" + tabla;
+			string L1 = proceso + "Try" + "\r" + "{" + "\r";
+			string L2 = "CONEXION.CONEXIONMAESTRA.abrir();" + "\r";
+			string L4 = "SqlCommand cmd = New SqlCommand(" + labelComillas.Text + nombre_scrypt2 + labelComillas.Text + ", CONEXION.CONEXIONMAESTRA.conectar);" + "\r";
+			string L5 = "cmd.CommandType = CommandType.StoredProcedure;";
+			txtEditarCsharp.Text = L1 + L2 + L4 + L5;
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				if (Tipo != "image")
+				{
+					parametros = "@" + parametros;
+					string cmdparametro = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", txt" + parametros2 + ".Text);";
+					txtEditarCsharp.Text = txtEditarCsharp.Text + "\r" + cmdparametro;
+				}
+			}
+
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+
+				if (Tipo == "image")
+				{
+					parametros = "@" + parametros;
+					string L6 = "System.IO.MemoryStream ms = New System.IO.MemoryStream();" + "\r";
+					string L7 = "AQUI_el_nombre_de_TU_PICTUREBOX.Image.Save(ms, AQUI_el_nombre_de_TU_PICTUREBOX.Image.RawFormat);" + "\r";
+					string L8 = "cmd.Parameters.AddWithValue(" + labelComillas.Text + parametros + labelComillas.Text + ", ms.GetBuffer());" + "\r";
+
+					string LUNIDOS = "\r" + L6 + L7 + L8;
+					txtEditarCsharp.Text = txtEditarCsharp.Text + LUNIDOS;
+				}
+			}
+			string L9 = "\r" + "cmd.ExecuteNonQuery();" + "\r";
+			string L10 = "CONEXION.CONEXIONMAESTRA.Cerrar();" + "\r";
+			string llave2 = "}" + "\r";
+			string L11 = llave2 + "catch (Exception ex)" + "\r";
+			string llave3 = "{" + "\r";
+			string L12 = "MessageBox.Show(ex.StackTrace);" + "\r";
+			string L13 = "}";
+			txtEditarCsharp.Text = txtEditarCsharp.Text + L9 + L10 + L11 + llave3 + L12 + L13 + "\r" + "}";
+
+
+		}
+
+		public void csharp()
+		{
+			btnCsharp.BackColor = Color.DodgerBlue;
+			btnVb.BackColor = Color.FromArgb(45, 45, 48);
+			btnSQLSERVER.BackColor = Color.FromArgb(45, 45, 48);
+			ConParametrosCsharp.Checked = false;
+			PanelSQLServer.Visible = false;
+			PanelCsharp.Visible = true;
+
+			insertar_C_sharp();
+			editar_C_sharp();
+		}
+
 	}
 }
