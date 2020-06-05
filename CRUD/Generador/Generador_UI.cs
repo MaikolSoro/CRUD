@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
@@ -32,6 +34,7 @@ namespace CRUD
 		private string indicador;
 		private int contador;
 		private string id;
+		private string ruta;
 		private DataTable dt = new DataTable();
 		public Generador_UI()
 		{
@@ -873,5 +876,123 @@ namespace CRUD
 			mostrar_datagridview_C_sharp();
 		}
 
-	}
+		public void ejecutar_scryt_crearProcedimientos_almacenados()
+		{
+
+			ruta = Path.Combine(Directory.GetCurrentDirectory(), "CRUD369" + ".txt");
+
+			FileInfo fi = new FileInfo(ruta);
+			StreamWriter sw = null;
+
+			try
+			{
+				if (File.Exists(ruta) == false)
+				{
+
+					sw = File.CreateText(ruta);
+					sw.WriteLine(txtCrear_procedimientos.Text);
+					sw.Flush();
+					sw.Close();
+				}
+				else if (File.Exists(ruta) == true)
+				{
+					File.Delete(ruta);
+					sw = File.CreateText(ruta);
+					sw.WriteLine(txtCrear_procedimientos.Text);
+					sw.Flush();
+					sw.Close();
+				}
+			}
+			catch (Exception ex)
+			{
+
+			}
+
+			try
+			{
+				Process Pross = new Process();
+
+				Pross.StartInfo.FileName = "sqlcmd";
+				Pross.StartInfo.Arguments = " -S " + servidor + " -i " + "CRUD369" + ".txt";
+				Pross.Start();
+				MessageBox.Show("Proceso ejecutado", "Listo");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error al ejecutar", "Listo");
+
+			}
+
+
+		}
+
+        private void btnCsharp_Click(object sender, EventArgs e)
+        {
+			try
+			{
+				indicador = "C#";
+
+
+				try
+				{
+
+					PanelSQLServer.Visible = false;
+					PanelCsharp.Visible = true;
+					PanelVb.Visible = false;
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.StackTrace);
+				}
+
+
+				contador = 0;
+				try
+				{
+					tabla = Convert.ToString(this.datalistado_TABLAS.SelectedCells[0].Value);
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.StackTrace);
+				}
+				if (usuario == "NULO")
+				{
+					this.psEstructura_Tabla(tabla);
+				}
+				else
+				{
+					this.psEstructura_TablaContrasenna(tabla);
+				}
+				csharp();
+			}
+			catch (Exception ex)
+			{
+
+			}
+
+		}
+
+        private void Button9_Click(object sender, EventArgs e)
+        {
+			Clipboard.SetText(txtEditar.Text);
+		}
+
+        private void Button11_Click(object sender, EventArgs e)
+        {
+			InsertarSQLServer();
+			Clipboard.SetText(txtEliminar.Text);
+		}
+
+        private void Button13_Click(object sender, EventArgs e)
+        {
+			Clipboard.SetText(txtMostrar.Text);
+		}
+
+        private void Button10_Click(object sender, EventArgs e)
+        {
+			txtCrear_procedimientos.Text = txtEditar.Text;
+			ejecutar_scryt_crearProcedimientos_almacenados();
+		}
+    }
 }

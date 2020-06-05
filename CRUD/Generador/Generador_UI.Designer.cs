@@ -46,7 +46,7 @@ namespace CRUD
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Generador_UI));
             this.datalistado_TABLAS = new System.Windows.Forms.DataGridView();
             this.Tablas = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -336,12 +336,12 @@ namespace CRUD
             // 
             // Tablas
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.Tablas.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.Tablas.DefaultCellStyle = dataGridViewCellStyle5;
             this.Tablas.HeaderText = "Tablas";
             this.Tablas.MinimumWidth = 6;
             this.Tablas.Name = "Tablas";
@@ -1885,6 +1885,7 @@ namespace CRUD
             this.Button11.TabIndex = 27;
             this.Button11.Text = "Copiar";
             this.Button11.UseVisualStyleBackColor = false;
+            this.Button11.Click += new System.EventHandler(this.Button11_Click);
             // 
             // Button12
             // 
@@ -1954,6 +1955,7 @@ namespace CRUD
             this.Button9.TabIndex = 27;
             this.Button9.Text = "Copiar";
             this.Button9.UseVisualStyleBackColor = false;
+            this.Button9.Click += new System.EventHandler(this.Button9_Click);
             // 
             // Button10
             // 
@@ -1970,6 +1972,7 @@ namespace CRUD
             this.Button10.TabIndex = 26;
             this.Button10.Text = "Ejecutar";
             this.Button10.UseVisualStyleBackColor = false;
+            this.Button10.Click += new System.EventHandler(this.Button10_Click);
             // 
             // Panel6
             // 
@@ -1998,6 +2001,7 @@ namespace CRUD
             this.Button13.TabIndex = 27;
             this.Button13.Text = "Copiar";
             this.Button13.UseVisualStyleBackColor = false;
+            this.Button13.Click += new System.EventHandler(this.Button13_Click);
             // 
             // Button14
             // 
@@ -2166,6 +2170,7 @@ namespace CRUD
             this.btnCsharp.TabIndex = 0;
             this.btnCsharp.Text = "C#";
             this.btnCsharp.UseVisualStyleBackColor = false;
+            this.btnCsharp.Click += new System.EventHandler(this.btnCsharp_Click);
             // 
             // Panel10
             // 
