@@ -989,10 +989,128 @@ namespace CRUD
 			Clipboard.SetText(txtMostrar.Text);
 		}
 
-        private void Button10_Click(object sender, EventArgs e)
+		private void LblInsertar_Click(object sender, EventArgs e)
+		{
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string tipo = Convert.ToString(row.Cells["Parametros"].Value);
+				ComboBox1.Items.Add(tipo);
+			}
+		}
+		private void Button10_Click(object sender, EventArgs e)
         {
 			txtCrear_procedimientos.Text = txtEditar.Text;
 			ejecutar_scryt_crearProcedimientos_almacenados();
 		}
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+
+
+			btnMaximizar.Visible = false;
+			btnRestaurar.Visible = true;
+			this.WindowState = FormWindowState.Maximized;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+		}
+
+        private void btnMinizar_Click(object sender, EventArgs e)
+        {
+			this.WindowState = FormWindowState.Minimized;
+		}
+
+		public void maximizar()
+		{
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+
+
+			btnMaximizar.Visible = false;
+			btnRestaurar.Visible = true;
+			this.WindowState = FormWindowState.Maximized;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+		}
+
+        private void PictureBox3_Click(object sender, EventArgs e)
+        {
+			maximizar();
+		}
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+			restaurar();
+		}
+		public void restaurar()
+		{
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.WindowState = FormWindowState.Normal;
+			btnRestaurar.Visible = false;
+			btnMaximizar.Visible = true;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+		}
+		public void CapaModeloCsharp()
+		{
+			string privado = "private ";
+			string tipos_de_datos = null;
+			string puntocoma = ";";
+			string proceso = "public ";
+			string Capsula = null;
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				if (Tipo == "varchar")
+				{
+					Tipo = "string";
+				}
+				if (Tipo == "image")
+				{
+					Tipo = "byte[]";
+				}
+				txtModeloCsharp.Text = txtModeloCsharp.Text + privado + Tipo + " _" + parametros + puntocoma + "\r";
+
+			}
+			foreach (DataGridViewRow row in datalistadoEstructura.Rows)
+			{
+				string parametros = Convert.ToString(row.Cells["Parametros"].Value);
+				string parametros2 = Convert.ToString(row.Cells["Parametros"].Value);
+				string Tipo = Convert.ToString(row.Cells["Tipo"].Value);
+				if (Tipo == "varchar")
+				{
+					Tipo = "string";
+				}
+				if (Tipo == "image")
+				{
+					Tipo = "byte[]";
+				}
+
+				Capsula = proceso + Tipo + " " + parametros + "\r" + "{" + "\r" + "get " + "{ " + "return _" + parametros + puntocoma + " }" + "\r" + "set " + "{ _" + parametros + " = " + "value" + puntocoma + " }" + "\r" + "}";
+				txtModeloCsharp.Text = txtModeloCsharp.Text + Capsula;
+			}
+
+		}
+		private void BtnMVVC_Click(object sender, EventArgs e)
+        {
+			PanelSQLServer.Visible = false;
+			PanelCsharp.Visible = false;
+			PanelVb.Visible = false;
+			PanelMvvcCsharp.Visible = true;
+			CapaModeloCsharp();
+		}
+
+        private void ToolStripEjecutar_Click(object sender, EventArgs e)
+        {
+			InsertarSQLServer();
+			txtCrear_procedimientos.Text = txtInsertarSQLServer.Text;
+			ejecutar_scryt_crearProcedimientos_almacenados();
+		}
+
+        private void BtnEjecutar_Click(object sender, EventArgs e)
+        {
+			InsertarSQLServer();
+			txtCrear_procedimientos.Text = txtInsertarSQLServer.Text + "\r" + "GO" + "\r" + txtEditar.Text + "\r" + "GO" + "\r" + txtMostrar.Text + "\r" + "GO" + "\r" + txtEliminar.Text;
+			ejecutar_scryt_crearProcedimientos_almacenados();
+		}
+    
     }
 }

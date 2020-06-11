@@ -46,7 +46,7 @@ namespace CRUD
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Generador_UI));
             this.datalistado_TABLAS = new System.Windows.Forms.DataGridView();
             this.Tablas = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,7 +82,7 @@ namespace CRUD
             this.labelComillas = new System.Windows.Forms.Label();
             this.txtCrudSQLCompleto = new System.Windows.Forms.RichTextBox();
             this.txtbasededatos = new System.Windows.Forms.ComboBox();
-            this.Label3 = new System.Windows.Forms.Label();
+            this.LblInsertar = new System.Windows.Forms.Label();
             this.txtInsertarSQLServer = new System.Windows.Forms.RichTextBox();
             this.txtEditar = new System.Windows.Forms.RichTextBox();
             this.Label1 = new System.Windows.Forms.Label();
@@ -166,7 +166,7 @@ namespace CRUD
             this.ToolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.Label7 = new System.Windows.Forms.Label();
-            this.Button16 = new System.Windows.Forms.Button();
+            this.BtnEjecutar = new System.Windows.Forms.Button();
             this.Button15 = new System.Windows.Forms.Button();
             this.Panel3 = new System.Windows.Forms.Panel();
             this.PanelVerInsertarSQLserver = new System.Windows.Forms.Panel();
@@ -174,7 +174,7 @@ namespace CRUD
             this.TSQLver = new System.Windows.Forms.ToolStripButton();
             this.TSQLvolver = new System.Windows.Forms.ToolStripButton();
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.ToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripEjecutar = new System.Windows.Forms.ToolStripButton();
             this.ToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.PanelRepeticiones = new System.Windows.Forms.Panel();
             this.Label17 = new System.Windows.Forms.Label();
@@ -197,7 +197,7 @@ namespace CRUD
             this.Button14 = new System.Windows.Forms.Button();
             this.PanelTABLET = new System.Windows.Forms.Panel();
             this.Panel25 = new System.Windows.Forms.Panel();
-            this.Button18 = new System.Windows.Forms.Button();
+            this.BtnMVVC = new System.Windows.Forms.Button();
             this.Panel7 = new System.Windows.Forms.Panel();
             this.Button6 = new System.Windows.Forms.Button();
             this.Panel14 = new System.Windows.Forms.Panel();
@@ -238,7 +238,7 @@ namespace CRUD
             this.Panel21 = new System.Windows.Forms.Panel();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.Panel24 = new System.Windows.Forms.Panel();
-            this.PictureBox5 = new System.Windows.Forms.PictureBox();
+            this.btnMinizar = new System.Windows.Forms.PictureBox();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.PictureBox2 = new System.Windows.Forms.PictureBox();
@@ -298,7 +298,7 @@ namespace CRUD
             this.Panel29.SuspendLayout();
             this.Panel21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -336,12 +336,12 @@ namespace CRUD
             // 
             // Tablas
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.Tablas.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.Tablas.DefaultCellStyle = dataGridViewCellStyle1;
             this.Tablas.HeaderText = "Tablas";
             this.Tablas.MinimumWidth = 6;
             this.Tablas.Name = "Tablas";
@@ -637,17 +637,18 @@ namespace CRUD
             this.txtbasededatos.Size = new System.Drawing.Size(204, 31);
             this.txtbasededatos.TabIndex = 2;
             // 
-            // Label3
+            // LblInsertar
             // 
-            this.Label3.BackColor = System.Drawing.Color.Transparent;
-            this.Label3.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
-            this.Label3.ForeColor = System.Drawing.Color.White;
-            this.Label3.Location = new System.Drawing.Point(3, 14);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(135, 37);
-            this.Label3.TabIndex = 9;
-            this.Label3.Text = "Insertar";
-            this.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblInsertar.BackColor = System.Drawing.Color.Transparent;
+            this.LblInsertar.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold);
+            this.LblInsertar.ForeColor = System.Drawing.Color.White;
+            this.LblInsertar.Location = new System.Drawing.Point(3, 14);
+            this.LblInsertar.Name = "LblInsertar";
+            this.LblInsertar.Size = new System.Drawing.Size(135, 37);
+            this.LblInsertar.TabIndex = 9;
+            this.LblInsertar.Text = "Insertar";
+            this.LblInsertar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblInsertar.Click += new System.EventHandler(this.LblInsertar_Click);
             // 
             // txtInsertarSQLServer
             // 
@@ -1410,7 +1411,7 @@ namespace CRUD
             this.PanelSQLServer.Controls.Add(this.Panel18);
             this.PanelSQLServer.Controls.Add(this.Panel17);
             this.PanelSQLServer.Controls.Add(this.Panel16);
-            this.PanelSQLServer.Controls.Add(this.Button16);
+            this.PanelSQLServer.Controls.Add(this.BtnEjecutar);
             this.PanelSQLServer.Controls.Add(this.Button15);
             this.PanelSQLServer.Controls.Add(this.Panel3);
             this.PanelSQLServer.Controls.Add(this.Panel9);
@@ -1632,21 +1633,22 @@ namespace CRUD
             this.Label7.Text = "Editar";
             this.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Button16
+            // BtnEjecutar
             // 
-            this.Button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
-            this.Button16.FlatAppearance.BorderSize = 0;
-            this.Button16.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button16.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button16.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Button16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Button16.Location = new System.Drawing.Point(197, 10);
-            this.Button16.Name = "Button16";
-            this.Button16.Size = new System.Drawing.Size(202, 37);
-            this.Button16.TabIndex = 29;
-            this.Button16.Text = "Ejecutar CRUD Completo";
-            this.Button16.UseVisualStyleBackColor = false;
+            this.BtnEjecutar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
+            this.BtnEjecutar.FlatAppearance.BorderSize = 0;
+            this.BtnEjecutar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnEjecutar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BtnEjecutar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEjecutar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.BtnEjecutar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BtnEjecutar.Location = new System.Drawing.Point(197, 10);
+            this.BtnEjecutar.Name = "BtnEjecutar";
+            this.BtnEjecutar.Size = new System.Drawing.Size(202, 37);
+            this.BtnEjecutar.TabIndex = 29;
+            this.BtnEjecutar.Text = "Ejecutar CRUD Completo";
+            this.BtnEjecutar.UseVisualStyleBackColor = false;
+            this.BtnEjecutar.Click += new System.EventHandler(this.BtnEjecutar_Click);
             // 
             // Button15
             // 
@@ -1672,7 +1674,7 @@ namespace CRUD
             this.Panel3.Controls.Add(this.StatusStrip1);
             this.Panel3.Controls.Add(this.PanelRepeticiones);
             this.Panel3.Controls.Add(this.EvitarRepeticionesSQLServer);
-            this.Panel3.Controls.Add(this.Label3);
+            this.Panel3.Controls.Add(this.LblInsertar);
             this.Panel3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.Panel3.Location = new System.Drawing.Point(6, 53);
             this.Panel3.Name = "Panel3";
@@ -1728,7 +1730,7 @@ namespace CRUD
             this.StatusStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.StatusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripButton1,
+            this.ToolStripEjecutar,
             this.ToolStripButton2});
             this.StatusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.StatusStrip1.Location = new System.Drawing.Point(168, 22);
@@ -1737,15 +1739,16 @@ namespace CRUD
             this.StatusStrip1.TabIndex = 36;
             this.StatusStrip1.Text = "StatusStrip1";
             // 
-            // ToolStripButton1
+            // ToolStripEjecutar
             // 
-            this.ToolStripButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.ToolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.ToolStripButton1.Image = global::CRUD.Properties.Resources.jugar;
-            this.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButton1.Name = "ToolStripButton1";
-            this.ToolStripButton1.Size = new System.Drawing.Size(113, 32);
-            this.ToolStripButton1.Text = "Ejecutar";
+            this.ToolStripEjecutar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.ToolStripEjecutar.ForeColor = System.Drawing.Color.White;
+            this.ToolStripEjecutar.Image = global::CRUD.Properties.Resources.jugar;
+            this.ToolStripEjecutar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripEjecutar.Name = "ToolStripEjecutar";
+            this.ToolStripEjecutar.Size = new System.Drawing.Size(113, 32);
+            this.ToolStripEjecutar.Text = "Ejecutar";
+            this.ToolStripEjecutar.Click += new System.EventHandler(this.ToolStripEjecutar_Click);
             // 
             // ToolStripButton2
             // 
@@ -2039,7 +2042,7 @@ namespace CRUD
             // 
             // Panel25
             // 
-            this.Panel25.Controls.Add(this.Button18);
+            this.Panel25.Controls.Add(this.BtnMVVC);
             this.Panel25.Dock = System.Windows.Forms.DockStyle.Left;
             this.Panel25.Font = new System.Drawing.Font("Consolas", 16F);
             this.Panel25.Location = new System.Drawing.Point(667, 0);
@@ -2047,21 +2050,22 @@ namespace CRUD
             this.Panel25.Size = new System.Drawing.Size(98, 27);
             this.Panel25.TabIndex = 8;
             // 
-            // Button18
+            // BtnMVVC
             // 
-            this.Button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Button18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Button18.Enabled = false;
-            this.Button18.FlatAppearance.BorderSize = 0;
-            this.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button18.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Button18.ForeColor = System.Drawing.Color.DarkGray;
-            this.Button18.Location = new System.Drawing.Point(0, 0);
-            this.Button18.Name = "Button18";
-            this.Button18.Size = new System.Drawing.Size(98, 27);
-            this.Button18.TabIndex = 0;
-            this.Button18.Text = "MVVC C#";
-            this.Button18.UseVisualStyleBackColor = false;
+            this.BtnMVVC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnMVVC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnMVVC.Enabled = false;
+            this.BtnMVVC.FlatAppearance.BorderSize = 0;
+            this.BtnMVVC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnMVVC.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.BtnMVVC.ForeColor = System.Drawing.Color.DarkGray;
+            this.BtnMVVC.Location = new System.Drawing.Point(0, 0);
+            this.BtnMVVC.Name = "BtnMVVC";
+            this.BtnMVVC.Size = new System.Drawing.Size(98, 27);
+            this.BtnMVVC.TabIndex = 0;
+            this.BtnMVVC.Text = "MVVC C#";
+            this.BtnMVVC.UseVisualStyleBackColor = false;
+            this.BtnMVVC.Click += new System.EventHandler(this.BtnMVVC_Click);
             // 
             // Panel7
             // 
@@ -2397,6 +2401,7 @@ namespace CRUD
             this.PictureBox3.TabIndex = 38;
             this.PictureBox3.TabStop = false;
             this.PictureBox3.Visible = false;
+            this.PictureBox3.Click += new System.EventHandler(this.PictureBox3_Click);
             // 
             // Button7
             // 
@@ -2514,7 +2519,7 @@ namespace CRUD
             // 
             this.Panel29.Controls.Add(this.Label20);
             this.Panel29.Controls.Add(this.Panel21);
-            this.Panel29.Controls.Add(this.PictureBox5);
+            this.Panel29.Controls.Add(this.btnMinizar);
             this.Panel29.Controls.Add(this.btnRestaurar);
             this.Panel29.Controls.Add(this.btnMaximizar);
             this.Panel29.Controls.Add(this.PictureBox2);
@@ -2570,17 +2575,18 @@ namespace CRUD
             this.Panel24.Size = new System.Drawing.Size(51, 6);
             this.Panel24.TabIndex = 15;
             // 
-            // PictureBox5
+            // btnMinizar
             // 
-            this.PictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PictureBox5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PictureBox5.Image = global::CRUD.Properties.Resources.Icono_Minimizar;
-            this.PictureBox5.Location = new System.Drawing.Point(1218, 21);
-            this.PictureBox5.Name = "PictureBox5";
-            this.PictureBox5.Size = new System.Drawing.Size(30, 36);
-            this.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PictureBox5.TabIndex = 12;
-            this.PictureBox5.TabStop = false;
+            this.btnMinizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMinizar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMinizar.Image = global::CRUD.Properties.Resources.Icono_Minimizar;
+            this.btnMinizar.Location = new System.Drawing.Point(1218, 21);
+            this.btnMinizar.Name = "btnMinizar";
+            this.btnMinizar.Size = new System.Drawing.Size(30, 36);
+            this.btnMinizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnMinizar.TabIndex = 12;
+            this.btnMinizar.TabStop = false;
+            this.btnMinizar.Click += new System.EventHandler(this.btnMinizar_Click);
             // 
             // btnRestaurar
             // 
@@ -2594,6 +2600,7 @@ namespace CRUD
             this.btnRestaurar.TabIndex = 12;
             this.btnRestaurar.TabStop = false;
             this.btnRestaurar.Visible = false;
+            this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
             // 
             // btnMaximizar
             // 
@@ -2606,6 +2613,7 @@ namespace CRUD
             this.btnMaximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMaximizar.TabIndex = 12;
             this.btnMaximizar.TabStop = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // PictureBox2
             // 
@@ -2756,7 +2764,7 @@ namespace CRUD
             this.Panel29.ResumeLayout(false);
             this.Panel21.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
@@ -2764,7 +2772,7 @@ namespace CRUD
 
 		}
 		internal DataGridView datalistado_TABLAS;
-		internal Label Label3;
+		internal Label LblInsertar;
 		internal RichTextBox txtMostrar;
 		internal Label Label2;
 		internal RichTextBox txtEditar;
@@ -2855,14 +2863,14 @@ namespace CRUD
 		internal Button Button10;
 		internal Button Button13;
 		internal Button Button14;
-		internal Button Button16;
+		internal Button BtnEjecutar;
 		internal Button Button15;
 		internal PictureBox PictureBox1;
 		internal Label Label5;
 		internal Panel Panel19;
 		internal Button Button17;
 		internal Panel Panel25;
-		internal Button Button18;
+		internal Button BtnMVVC;
 		internal Button Button20;
 		internal Button Button22;
 		internal Button Button21;
@@ -2903,7 +2911,7 @@ namespace CRUD
 		internal Panel PanelRepeticiones;
 		internal Label Label10;
 		internal StatusStrip StatusStrip1;
-		internal ToolStripButton ToolStripButton1;
+		internal ToolStripButton ToolStripEjecutar;
 		internal ToolStripButton ToolStripButton2;
 		internal StatusStrip StatusStrip2;
 		internal ToolStripButton TSQLvolver;
@@ -2919,7 +2927,7 @@ namespace CRUD
 		internal Button btnCerrar;
 		internal Panel Panel29;
 		internal PictureBox btnRestaurar;
-		internal PictureBox PictureBox5;
+		internal PictureBox btnMinizar;
 		internal PictureBox btnMaximizar;
 		internal PictureBox PictureBox2;
 		internal Label Label20;
