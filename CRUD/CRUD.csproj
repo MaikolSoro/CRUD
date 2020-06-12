@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Librerias\Desencryptacion.cs" />
     <Compile Include="Librerias\Encryptacion.cs" />
+    <Compile Include="Librerias\Numeros_separadores.cs" />
     <Compile Include="Librerias\Tamaño_automatico_de_datatables.cs" />
     <Compile Include="Presentacion\Presentacion.cs">
       <SubType>Form</SubType>
