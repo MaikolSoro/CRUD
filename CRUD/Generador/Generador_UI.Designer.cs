@@ -46,7 +46,7 @@ namespace CRUD
 		[System.Diagnostics.DebuggerStepThrough()]
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Generador_UI));
             this.datalistado_TABLAS = new System.Windows.Forms.DataGridView();
             this.Tablas = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -194,7 +194,7 @@ namespace CRUD
             this.Button10 = new System.Windows.Forms.Button();
             this.Panel6 = new System.Windows.Forms.Panel();
             this.Button13 = new System.Windows.Forms.Button();
-            this.Button14 = new System.Windows.Forms.Button();
+            this.btnEjecutarEs = new System.Windows.Forms.Button();
             this.PanelTABLET = new System.Windows.Forms.Panel();
             this.Panel25 = new System.Windows.Forms.Panel();
             this.BtnMVVC = new System.Windows.Forms.Button();
@@ -225,7 +225,7 @@ namespace CRUD
             this.Formulas = new System.Windows.Forms.Button();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
             this.Button7 = new System.Windows.Forms.Button();
-            this.Button17 = new System.Windows.Forms.Button();
+            this.btnNuevaConexion = new System.Windows.Forms.Button();
             this.Panel32 = new System.Windows.Forms.Panel();
             this.Panel26 = new System.Windows.Forms.Panel();
             this.StatusStrip6 = new System.Windows.Forms.StatusStrip();
@@ -336,12 +336,12 @@ namespace CRUD
             // 
             // Tablas
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.Tablas.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.Tablas.DefaultCellStyle = dataGridViewCellStyle2;
             this.Tablas.HeaderText = "Tablas";
             this.Tablas.MinimumWidth = 6;
             this.Tablas.Name = "Tablas";
@@ -1035,6 +1035,7 @@ namespace CRUD
             this.datalistadoEstructuraCONParametros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datalistadoEstructuraCONParametros.Size = new System.Drawing.Size(28, 155);
             this.datalistadoEstructuraCONParametros.TabIndex = 15;
+            this.datalistadoEstructuraCONParametros.Click += new System.EventHandler(this.datalistadoEstructuraCONParametros_Click);
             // 
             // Parametros2
             // 
@@ -1981,7 +1982,7 @@ namespace CRUD
             // 
             this.Panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
             this.Panel6.Controls.Add(this.Button13);
-            this.Panel6.Controls.Add(this.Button14);
+            this.Panel6.Controls.Add(this.btnEjecutarEs);
             this.Panel6.Controls.Add(this.txtMostrar);
             this.Panel6.Controls.Add(this.Label2);
             this.Panel6.Location = new System.Drawing.Point(6, 352);
@@ -2006,21 +2007,22 @@ namespace CRUD
             this.Button13.UseVisualStyleBackColor = false;
             this.Button13.Click += new System.EventHandler(this.Button13_Click);
             // 
-            // Button14
+            // btnEjecutarEs
             // 
-            this.Button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
-            this.Button14.FlatAppearance.BorderSize = 0;
-            this.Button14.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
-            this.Button14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.Button14.Location = new System.Drawing.Point(244, 13);
-            this.Button14.Name = "Button14";
-            this.Button14.Size = new System.Drawing.Size(106, 44);
-            this.Button14.TabIndex = 26;
-            this.Button14.Text = "Ejecutar";
-            this.Button14.UseVisualStyleBackColor = false;
+            this.btnEjecutarEs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(39)))));
+            this.btnEjecutarEs.FlatAppearance.BorderSize = 0;
+            this.btnEjecutarEs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEjecutarEs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEjecutarEs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEjecutarEs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
+            this.btnEjecutarEs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnEjecutarEs.Location = new System.Drawing.Point(244, 13);
+            this.btnEjecutarEs.Name = "btnEjecutarEs";
+            this.btnEjecutarEs.Size = new System.Drawing.Size(106, 44);
+            this.btnEjecutarEs.TabIndex = 26;
+            this.btnEjecutarEs.Text = "Ejecutar";
+            this.btnEjecutarEs.UseVisualStyleBackColor = false;
+            this.btnEjecutarEs.Click += new System.EventHandler(this.btnEjecutarEs_Click);
             // 
             // PanelTABLET
             // 
@@ -2317,7 +2319,7 @@ namespace CRUD
             this.Panel30.Controls.Add(this.Formulas);
             this.Panel30.Controls.Add(this.PictureBox3);
             this.Panel30.Controls.Add(this.Button7);
-            this.Panel30.Controls.Add(this.Button17);
+            this.Panel30.Controls.Add(this.btnNuevaConexion);
             this.Panel30.Controls.Add(this.Panel32);
             this.Panel30.Controls.Add(this.Panel26);
             this.Panel30.Dock = System.Windows.Forms.DockStyle.Top;
@@ -2423,25 +2425,26 @@ namespace CRUD
             this.Button7.Text = "Reportar errores y mejoras";
             this.Button7.UseVisualStyleBackColor = true;
             // 
-            // Button17
+            // btnNuevaConexion
             // 
-            this.Button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Button17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Button17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Button17.FlatAppearance.BorderSize = 0;
-            this.Button17.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button17.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button17.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.Button17.ForeColor = System.Drawing.Color.White;
-            this.Button17.Image = ((System.Drawing.Image)(resources.GetObject("Button17.Image")));
-            this.Button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Button17.Location = new System.Drawing.Point(27, 24);
-            this.Button17.Name = "Button17";
-            this.Button17.Size = new System.Drawing.Size(154, 28);
-            this.Button17.TabIndex = 30;
-            this.Button17.Text = "Nueva Conexion";
-            this.Button17.UseVisualStyleBackColor = true;
+            this.btnNuevaConexion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnNuevaConexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnNuevaConexion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnNuevaConexion.FlatAppearance.BorderSize = 0;
+            this.btnNuevaConexion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnNuevaConexion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnNuevaConexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevaConexion.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnNuevaConexion.ForeColor = System.Drawing.Color.White;
+            this.btnNuevaConexion.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevaConexion.Image")));
+            this.btnNuevaConexion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevaConexion.Location = new System.Drawing.Point(27, 24);
+            this.btnNuevaConexion.Name = "btnNuevaConexion";
+            this.btnNuevaConexion.Size = new System.Drawing.Size(154, 28);
+            this.btnNuevaConexion.TabIndex = 30;
+            this.btnNuevaConexion.Text = "Nueva Conexion";
+            this.btnNuevaConexion.UseVisualStyleBackColor = true;
+            this.btnNuevaConexion.Click += new System.EventHandler(this.btnNuevaConexion_Click);
             // 
             // Panel32
             // 
@@ -2862,13 +2865,13 @@ namespace CRUD
 		internal Button Button9;
 		internal Button Button10;
 		internal Button Button13;
-		internal Button Button14;
+		internal Button btnEjecutarEs;
 		internal Button BtnEjecutar;
 		internal Button Button15;
 		internal PictureBox PictureBox1;
 		internal Label Label5;
 		internal Panel Panel19;
-		internal Button Button17;
+		internal Button btnNuevaConexion;
 		internal Panel Panel25;
 		internal Button BtnMVVC;
 		internal Button Button20;

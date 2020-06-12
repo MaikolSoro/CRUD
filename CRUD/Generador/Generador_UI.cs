@@ -8,6 +8,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
 using CRUD.Librerias;
+using CRUD.Servidores;
+
 namespace CRUD
 {
     public partial class Generador_UI : Form
@@ -36,6 +38,8 @@ namespace CRUD
 		private string id;
 		private string ruta;
 		private DataTable dt = new DataTable();
+		private static Generador_UI _DefaultInstance;
+
 		public Generador_UI()
 		{
 			InitializeComponent();
@@ -1111,6 +1115,48 @@ namespace CRUD
 			txtCrear_procedimientos.Text = txtInsertarSQLServer.Text + "\r" + "GO" + "\r" + txtEditar.Text + "\r" + "GO" + "\r" + txtMostrar.Text + "\r" + "GO" + "\r" + txtEliminar.Text;
 			ejecutar_scryt_crearProcedimientos_almacenados();
 		}
-    
-    }
+
+        private void datalistadoEstructuraCONParametros_Click(object sender, EventArgs e)
+        {
+			try
+			{
+				foreach (DataGridViewRow row in datalistadoEstructuraCONParametros.Rows)
+				{
+					if (Convert.ToBoolean(row.Cells["Marcar"].Value) == true)
+					{
+						mostrar_datagridview_C_sharp();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.StackTrace + " " + ex.StackTrace);
+			}
+
+		}
+
+        private void btnEjecutarEs_Click(object sender, EventArgs e)
+        {
+			txtCrear_procedimientos.Text = txtMostrar.Text;
+			ejecutar_scryt_crearProcedimientos_almacenados();
+		}
+
+        private void btnNuevaConexion_Click(object sender, EventArgs e)
+        {
+			Buscar_servidores.DefaultInstance.NIVEL = "CAMBIAR CONEXION";
+			Dispose();
+			Buscar_servidores.DefaultInstance.ShowDialog();
+		}
+
+		public static Generador_UI DefaultInstance
+		{
+			get
+			{
+				if (_DefaultInstance == null || _DefaultInstance.IsDisposed)
+					_DefaultInstance = new Generador_UI();
+
+				return _DefaultInstance;
+			}
+		}
+	}
 }
